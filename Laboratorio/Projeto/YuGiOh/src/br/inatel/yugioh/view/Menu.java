@@ -18,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);           // Centralizar a Tela
     }
 
     /**
@@ -34,7 +35,6 @@ public class Menu extends javax.swing.JFrame {
         btn_cadastro = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
         btn_mostrar = new javax.swing.JButton();
-        btn_editar = new javax.swing.JButton();
         btn_logout = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -47,6 +47,8 @@ public class Menu extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(660, 360));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setOpaque(false);
+
         btn_cadastro.setText("Cadastrar nova carta");
         btn_cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,24 +56,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btn_excluir.setText("Exlcuir Carta");
+        btn_excluir.setText("Alterar Cartas");
         btn_excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_excluirActionPerformed(evt);
             }
         });
 
-        btn_mostrar.setText("Mostrar Cartas");
+        btn_mostrar.setText("Listar Cartas");
         btn_mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_mostrarActionPerformed(evt);
-            }
-        });
-
-        btn_editar.setText("Editar Carta");
-        btn_editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editarActionPerformed(evt);
             }
         });
 
@@ -87,17 +82,15 @@ public class Menu extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(btn_cadastro)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addComponent(btn_excluir)
-                .addGap(18, 18, 18)
+                .addGap(51, 51, 51)
                 .addComponent(btn_mostrar)
-                .addGap(18, 18, 18)
-                .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(58, 58, 58)
                 .addComponent(btn_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +100,6 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btn_cadastro)
                     .addComponent(btn_excluir)
                     .addComponent(btn_mostrar)
-                    .addComponent(btn_editar)
                     .addComponent(btn_logout))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -128,10 +120,6 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_editarActionPerformed
-
     private void btn_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastroActionPerformed
         // Cadastro de nova Carta
         cadastroNovaCarta();
@@ -139,6 +127,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         // Excluir Carta
+        excluirCartas();
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     private void btn_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_logoutActionPerformed
@@ -185,10 +174,9 @@ public class Menu extends javax.swing.JFrame {
         });
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cadastro;
-    private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_mostrar;
@@ -199,38 +187,45 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_Fundo;
     // End of variables declaration//GEN-END:variables
 
-    /******************** Métodos Auxiliares ********************/
+    /**
+     * ****************** Métodos Auxiliares *******************
+     */
     // Mostrar cartas
     private void mostrarCartas() {
         ListarCartas l = new ListarCartas();
         l.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }
-    
+
     // Cadastrar nova carta
-    private void cadastroNovaCarta(){
+    private void cadastroNovaCarta() {
         int opcao = JOptionPane.showConfirmDialog(rootPane, "Você deseja cadastar um Monstro?", "Cadastro",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        if ( opcao == 0 ) {
+
+        if (opcao == 0) {
             // Monstro
             CadastroMonstro c = new CadastroMonstro();
             c.setVisible(true);
-            this.setVisible(false);
+            this.dispose();
         } else {
             // Magica
             CadastroMagica c = new CadastroMagica();
             c.setVisible(true);
-            this.setVisible(false);
+            this.dispose();
         }
     }
-    
+
     // Efetuar Logout
-    private void logout(){
+    private void logout() {
         // Retorna a tela de Login
-        this.setVisible(false);
+        this.dispose();
         Login l = new Login();
         l.setVisible(true);
     }
-    
+
+    private void excluirCartas() {
+        AlterarCartas ec = new AlterarCartas();
+        ec.setVisible(true);
+        this.dispose();
+    }
 }

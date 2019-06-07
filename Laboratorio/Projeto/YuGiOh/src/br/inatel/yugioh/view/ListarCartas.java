@@ -17,49 +17,10 @@ public class ListarCartas extends javax.swing.JFrame {
 
     public ListarCartas() {
         initComponents();
-        this.setLocationRelativeTo(null);
-
         dck = deck.lerDeck();
-
         dtm = (DefaultTableModel) this.tabela_listar.getModel();
-
-        for (int i = 0; i < dck.size(); i++) {
-            Carta carta = dck.get(i);
-
-            if (carta instanceof CartaMonstro) {
-                CartaMonstro m = (CartaMonstro) carta;
-
-                dtm.insertRow(dtm.getRowCount(), new Object[]{
-                    m.getNome(),
-                    m.getAtributo(),
-                    m.getNivel(),
-                    m.getTipo(),
-                    m.getID(),
-                    m.getAtk(),
-                    m.getDef()
-                });
-            } else {
-                CartaMagica mg = (CartaMagica) carta;
-                dtm.insertRow(dtm.getRowCount(), new Object[]{
-                    mg.getNome(),
-                    mg.getAtributo(),
-                    "Nao Possui",
-                    mg.getTipo(),
-                    mg.getID(),
-                    "Nao Possui",
-                    "Nao Possui"
-                });
-            }
-
-        }
-        /*
-        for (Carta carta : dck) {
-            dtm.insertRow(dtm.getRowCount(), new Object[]{
-                carta.getNome(),
-                carta.getAtributo(),
-                carta.getID()
-            });
-        }*/
+        mostrarDeck();
+        this.setLocationRelativeTo(null);           // Centralizar a Tela
     }
 
     /**
@@ -75,9 +36,9 @@ public class ListarCartas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela_listar = new javax.swing.JTable();
-        lbl_fundo = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        lbl_fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -91,6 +52,10 @@ public class ListarCartas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_ok, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 500, -1, -1));
+
+        jPanel1.setOpaque(false);
+
+        jScrollPane1.setOpaque(false);
 
         tabela_listar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tabela_listar.setModel(new javax.swing.table.DefaultTableModel(
@@ -116,6 +81,7 @@ public class ListarCartas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabela_listar.setOpaque(false);
         jScrollPane1.setViewportView(tabela_listar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -129,14 +95,13 @@ public class ListarCartas extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 790, 430));
 
-        lbl_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/yugioh/img/wallpaper_35.png"))); // NOI18N
-        getContentPane().add(lbl_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 550));
+        jPanel3.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Lista de Cartas Cadastradas");
@@ -164,6 +129,9 @@ public class ListarCartas extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 50));
 
+        lbl_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/yugioh/img/wallpaper_35.png"))); // NOI18N
+        getContentPane().add(lbl_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 550));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -171,7 +139,7 @@ public class ListarCartas extends javax.swing.JFrame {
         // Botao OK = proxima tela
         Menu m = new Menu();
         m.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btn_okActionPerformed
 
     /**
@@ -218,4 +186,40 @@ public class ListarCartas extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_fundo;
     private javax.swing.JTable tabela_listar;
     // End of variables declaration//GEN-END:variables
+
+    private void excluirCarta() {
+
+    }
+
+    private void mostrarDeck() {
+
+        for (int i = 0; i < dck.size(); i++) {
+            Carta carta = dck.get(i);
+
+            if (carta instanceof CartaMonstro) {
+                CartaMonstro m = (CartaMonstro) carta;
+
+                dtm.insertRow(dtm.getRowCount(), new Object[]{
+                    m.getNome(),
+                    m.getAtributo(),
+                    m.getNivel(),
+                    m.getTipo(),
+                    m.getID(),
+                    m.getAtk(),
+                    m.getDef()
+                });
+            } else {
+                CartaMagica mg = (CartaMagica) carta;
+                dtm.insertRow(dtm.getRowCount(), new Object[]{
+                    mg.getNome(),
+                    mg.getAtributo(),
+                    "Nao Possui",
+                    mg.getTipo(),
+                    mg.getID(),
+                    "Nao Possui",
+                    "Nao Possui"
+                });
+            }
+        }
+    }
 }

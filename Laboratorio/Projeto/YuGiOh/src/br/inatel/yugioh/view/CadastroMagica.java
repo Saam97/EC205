@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Samuel
  */
 public class CadastroMagica extends javax.swing.JFrame {
-    
+
     private Deck d = new Deck();
     private ArrayList<Carta> dck = new ArrayList<>();
 
@@ -22,6 +22,7 @@ public class CadastroMagica extends javax.swing.JFrame {
      */
     public CadastroMagica() {
         initComponents();
+        this.setLocationRelativeTo(null);           // Centralizar a Tela
         dck = d.lerDeck();
     }
 
@@ -42,7 +43,6 @@ public class CadastroMagica extends javax.swing.JFrame {
         lbl_nome = new javax.swing.JLabel();
         lbl_Carta = new javax.swing.JLabel();
         lbl_img = new javax.swing.JLabel();
-        lbl_Fundo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         nome = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
@@ -57,7 +57,8 @@ public class CadastroMagica extends javax.swing.JFrame {
         combo_icone = new javax.swing.JComboBox<>();
         combo_tipo = new javax.swing.JComboBox<>();
         btn_ok = new javax.swing.JButton();
-        btn_preencher = new javax.swing.JButton();
+        btn_cancel = new javax.swing.JButton();
+        lbl_Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -89,10 +90,8 @@ public class CadastroMagica extends javax.swing.JFrame {
         jPanel1.add(lbl_Carta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
         jPanel1.add(lbl_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 250, 250));
 
-        lbl_Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/yugioh/img/wallpaper_35.png"))); // NOI18N
-        jPanel1.add(lbl_Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setOpaque(false);
 
         nome.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         nome.setText("Nome");
@@ -153,7 +152,7 @@ public class CadastroMagica extends javax.swing.JFrame {
             }
         });
 
-        btn_ok.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btn_ok.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_ok.setText("OK");
         btn_ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,10 +160,11 @@ public class CadastroMagica extends javax.swing.JFrame {
             }
         });
 
-        btn_preencher.setText("Preencher Dados!");
-        btn_preencher.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_cancel.setText("Cancelar");
+        btn_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_preencherActionPerformed(evt);
+                btn_cancelActionPerformed(evt);
             }
         });
 
@@ -177,9 +177,9 @@ public class CadastroMagica extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btn_img)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_preencher)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_cancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_ok))
                     .addComponent(scr_efeito)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -224,14 +224,17 @@ public class CadastroMagica extends javax.swing.JFrame {
                 .addComponent(scr_efeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_img)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_img)
-                        .addComponent(btn_preencher))
-                    .addComponent(btn_ok))
+                        .addComponent(btn_ok)
+                        .addComponent(btn_cancel)))
                 .addContainerGap())
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 390, 480));
+
+        lbl_Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/yugioh/img/wallpaper_35.png"))); // NOI18N
+        jPanel1.add(lbl_Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 520));
 
@@ -262,9 +265,11 @@ public class CadastroMagica extends javax.swing.JFrame {
         botaoOK();          // botão OK
     }//GEN-LAST:event_btn_okActionPerformed
 
-    private void btn_preencherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_preencherActionPerformed
-        preencherDados();       // Preenchendo os dados
-    }//GEN-LAST:event_btn_preencherActionPerformed
+    private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,9 +308,9 @@ public class CadastroMagica extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancel;
     private javax.swing.JButton btn_img;
     private javax.swing.JButton btn_ok;
-    private javax.swing.JButton btn_preencher;
     private javax.swing.JComboBox<String> combo_icone;
     private javax.swing.JComboBox<String> combo_tipo;
     private javax.swing.JLabel desc;
@@ -337,11 +342,11 @@ public class CadastroMagica extends javax.swing.JFrame {
         // ID
         lbl_id.setText(txt_ID.getText());
     }
-    
+
     private void botaoOK() {
         salvar();
     }
-    
+
     private void salvar() {
 
         // Verifica se todos os dados foram preenchidos
@@ -351,7 +356,7 @@ public class CadastroMagica extends javax.swing.JFrame {
 
             // Salva as informações
             CartaMagica c = new CartaMagica();
-            
+
             c.setDescricao(scr_efeito.getToolTipText());
             c.setAtributo(combo_tipo.getSelectedItem() + "");
             c.setID(txt_ID.getText());
@@ -360,35 +365,25 @@ public class CadastroMagica extends javax.swing.JFrame {
             c.setIcone(combo_icone.getSelectedItem() + "");
             c.setTipo(combo_tipo.getSelectedItem() + "");
             c.setImg(lbl_img.getIcon());
-            
+
             dck.add(c);
             d.salvarDeck(dck);
-            
+
             JOptionPane.showMessageDialog(rootPane, "Carta Magica Cadastrada com Sucesso!");
-            
-            int p = JOptionPane.showConfirmDialog(rootPane, "Deseja cadastrar uma nova carta?", "Sair", JOptionPane.YES_NO_OPTION);
-            
-            if (p == 0) {
-                // Sim
-                limparDados();
-            } else {
-                // Não
-                // Sai da tela e volta pro menu
-                Menu menu = new Menu();
-                menu.setVisible(true);
-                this.setVisible(false);
-            }
-            
+
+            // Sai da tela e volta pro menu
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            this.dispose();
         }
-        
     }
-    
+
     public void limparDados() {
         txt_ID.setText("");
         txt_desc.setText("");
         txt_nome.setText("");
     }
-    
+
     private void setarIcone() {
         ImageIcon continuous = new ImageIcon("src\\br\\inatel\\yugioh\\img\\type\\type_continuous.png");
         ImageIcon counter = new ImageIcon("src\\br\\inatel\\yugioh\\img\\type\\type_counter.png");
@@ -396,7 +391,7 @@ public class CadastroMagica extends javax.swing.JFrame {
         ImageIcon field = new ImageIcon("src\\br\\inatel\\yugioh\\img\\type\\type_field.png");
         ImageIcon quickPlay = new ImageIcon("src\\br\\inatel\\yugioh\\img\\type\\type_quickPlay.png");
         ImageIcon ritual = new ImageIcon("src\\br\\inatel\\yugioh\\img\\type\\type_ritual.png");
-        
+
         if (combo_icone.getSelectedItem().equals("Ritual")) {
             lbl_icone.setIcon(ritual);
         }
@@ -424,17 +419,17 @@ public class CadastroMagica extends javax.swing.JFrame {
                     lbl_iconeDesc.setText("[Trap Card]");
                 }
             }
-            
+
         }
     }
-    
+
     private void escolherImagem() {
         JFileChooser file = new JFileChooser();
         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
+
         File dir = new File("src\\br\\inatel\\yugioh\\content");
         file.setCurrentDirectory(dir);
-        
+
         int i = file.showSaveDialog(null);
         if (i == 1) {
             lbl_img.setText("");
@@ -442,13 +437,14 @@ public class CadastroMagica extends javax.swing.JFrame {
             File arquivo = file.getSelectedFile();
             ImageIcon img = new ImageIcon(arquivo.getAbsolutePath());
             lbl_img.setIcon(img);
+            preencherDados();
         }
     }
-    
+
     private void setarTipoCarta() {
         ImageIcon magic = new ImageIcon("src\\br\\inatel\\yugioh\\img\\card\\magicPNG.png");
         ImageIcon trap = new ImageIcon("src\\br\\inatel\\yugioh\\img\\card\\trapPNG.png");
-        
+
         if (combo_tipo.getSelectedItem() != null) {
             if (combo_tipo.getSelectedItem().equals("Mágica")) {
                 lbl_Carta.setIcon(magic);
@@ -459,7 +455,7 @@ public class CadastroMagica extends javax.swing.JFrame {
                 lbl_iconeDesc.setText("[Trap Card      ]");
             }
         }
-        
+
     }
-    
+
 }

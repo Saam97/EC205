@@ -146,5 +146,12 @@ public abstract class Carta implements Serializable {
         System.out.println("Nome da Carta: " + this.nome);
         System.out.println("Atributo: " + this.atributo);
         System.out.println("Descrição: " + this.descricao);
+    }   
+
+    @Override
+    public String toString() {
+        return this.nome;
     }
+    
+    
 }

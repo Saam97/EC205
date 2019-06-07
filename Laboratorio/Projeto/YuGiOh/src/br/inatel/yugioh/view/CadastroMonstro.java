@@ -10,14 +10,14 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class CadastroMonstro extends javax.swing.JFrame {
-    
+
     private Deck d = new Deck();
     private ArrayList<Carta> baralho;
-    
-    
+
     public CadastroMonstro() {
         initComponents();
         baralho = d.lerDeck();
+        this.setLocationRelativeTo(null);           // Centralizar a Tela
     }
 
     /**
@@ -41,11 +41,9 @@ public class CadastroMonstro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         lbl_def = new javax.swing.JLabel();
         lbl_atk = new javax.swing.JLabel();
-        btn_cancelar = new javax.swing.JButton();
         lbl_atributo = new javax.swing.JLabel();
         lbl_Carta = new javax.swing.JLabel();
         lbl_img = new javax.swing.JLabel();
-        lbl_Fundo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         nome = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
@@ -68,11 +66,13 @@ public class CadastroMonstro extends javax.swing.JFrame {
         combo_atributo = new javax.swing.JComboBox<>();
         btn_ok = new javax.swing.JButton();
         combo_tipo = new javax.swing.JComboBox<>();
-        btn_preencher = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
+        lbl_Fundo = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro");
         setMinimumSize(new java.awt.Dimension(780, 552));
         setResizable(false);
         setSize(new java.awt.Dimension(780, 552));
@@ -110,25 +110,14 @@ public class CadastroMonstro extends javax.swing.JFrame {
 
         lbl_atk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel1.add(lbl_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 40, 20));
-
-        btn_cancelar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btn_cancelar.setText("Cancelar");
-        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cancelarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, -1, -1));
         jPanel1.add(lbl_atributo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 37, 37));
 
         lbl_Carta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/yugioh/img/card/monsterPNG.png"))); // NOI18N
         jPanel1.add(lbl_Carta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
         jPanel1.add(lbl_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 250, 250));
 
-        lbl_Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/yugioh/img/wallpaper_35.png"))); // NOI18N
-        jPanel1.add(lbl_Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setOpaque(false);
 
         nome.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         nome.setText("Nome");
@@ -222,7 +211,7 @@ public class CadastroMonstro extends javax.swing.JFrame {
             }
         });
 
-        btn_ok.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btn_ok.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_ok.setText("OK");
         btn_ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,10 +227,11 @@ public class CadastroMonstro extends javax.swing.JFrame {
             }
         });
 
-        btn_preencher.setText("Preencher Dados!");
-        btn_preencher.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_preencherActionPerformed(evt);
+                btn_cancelarActionPerformed(evt);
             }
         });
 
@@ -254,9 +244,9 @@ public class CadastroMonstro extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btn_img)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_preencher)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_cancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_ok))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,14 +325,17 @@ public class CadastroMonstro extends javax.swing.JFrame {
                         .addComponent(txt_atk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_img)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_img)
-                        .addComponent(btn_preencher))
-                    .addComponent(btn_ok))
+                        .addComponent(btn_ok)
+                        .addComponent(btn_cancelar)))
                 .addGap(22, 22, 22))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 390, 480));
+
+        lbl_Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/yugioh/img/wallpaper_35.png"))); // NOI18N
+        jPanel1.add(lbl_Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 520));
 
@@ -362,7 +355,7 @@ public class CadastroMonstro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_imgActionPerformed
 
     private void txt_defActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_defActionPerformed
-        
+
     }//GEN-LAST:event_txt_defActionPerformed
 
     private void combo_atributoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_atributoActionPerformed
@@ -374,7 +367,7 @@ public class CadastroMonstro extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_nivelActionPerformed
 
     private void txt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeActionPerformed
-        
+
     }//GEN-LAST:event_txt_nomeActionPerformed
 
     private void combo_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_tipoActionPerformed
@@ -382,23 +375,19 @@ public class CadastroMonstro extends javax.swing.JFrame {
     }//GEN-LAST:event_combo_tipoActionPerformed
 
     private void txt_atkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_atkActionPerformed
-        
+
     }//GEN-LAST:event_txt_atkActionPerformed
 
     private void txt_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tipoActionPerformed
-        
+
     }//GEN-LAST:event_txt_tipoActionPerformed
 
-    private void btn_preencherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_preencherActionPerformed
-        preencherDados();       // Preenchendo os dados
-    }//GEN-LAST:event_btn_preencherActionPerformed
-
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-       Menu menu = new Menu();
-       menu.setVisible(true);
-       this.dispose();
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_cancelarActionPerformed
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -438,7 +427,6 @@ public class CadastroMonstro extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_img;
     private javax.swing.JButton btn_ok;
-    private javax.swing.JButton btn_preencher;
     private javax.swing.JComboBox<String> combo_atributo;
     private javax.swing.JComboBox<String> combo_nivel;
     private javax.swing.JComboBox<String> combo_tipo;
@@ -479,7 +467,7 @@ public class CadastroMonstro extends javax.swing.JFrame {
         // Variáveis auxiliares
         int atk = 0;
         int def = 0;
-        
+
         if (!txt_atk.getText().equals("")
                 && !txt_def.getText().equals("")
                 && !txt_ID.getText().equals("")
@@ -517,7 +505,6 @@ public class CadastroMonstro extends javax.swing.JFrame {
             m.setTipo(combo_tipo.getSelectedItem() + "");
             m.seteMonstro(true);
             m.setImg(lbl_img.getIcon());
-            m.setImg( lbl_img.getIcon() );
 
             // Efeito do monstro
             if (m.getTipo().equals("Normal")) {
@@ -525,27 +512,20 @@ public class CadastroMonstro extends javax.swing.JFrame {
             } else {
                 m.setEfeito(txt_desc.getText());
             }
-            
+
             baralho.add(m);
-            
+
             d.salvarDeck(baralho);
-            
+
             JOptionPane.showMessageDialog(rootPane, "Monstro Cadastrado com Sucesso!");
-            
-            int p = JOptionPane.showConfirmDialog(rootPane, "Deseja cadastrar um novo monstro?", "Sair", JOptionPane.YES_NO_OPTION);
-            
-            if (p == 0) {
-                // Sim
-                limparDados();
-            } else {
-                // Não
-                // Sai da tela e volta pro menu
-                Menu menu = new Menu();
-                menu.setVisible(true);
-                this.setVisible(false);
-            }
+
+            // Sai da tela e volta pro menu
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            this.dispose();
         }
     }
+
     public void limparDados() {
         txt_ID.setText("");
         txt_atk.setText("");
@@ -560,24 +540,26 @@ public class CadastroMonstro extends javax.swing.JFrame {
         combo_tipo.setSelectedItem("Normal");
         lbl_img.setIcon(null);
     }
-    
+
     private void escolherImagem() {
         JFileChooser file = new JFileChooser();
         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
+        // Diretorio padrão
         File dir = new File("src\\br\\inatel\\yugioh\\content");
         file.setCurrentDirectory(dir);
-        
+
         int i = file.showSaveDialog(null);
+
         if (i == 1) {
             lbl_img.setText("");
         } else {
             File arquivo = file.getSelectedFile();
             ImageIcon img = new ImageIcon(arquivo.getAbsolutePath());
             lbl_img.setIcon(img);
+            preencherDados();
         }
     }
-    
+
     private void setarIconeAtributo() {
 
         // Referenciando as imagens
@@ -593,32 +575,32 @@ public class CadastroMonstro extends javax.swing.JFrame {
         if (combo_atributo.getSelectedItem().equals("Trevas")) {
             lbl_atributo.setIcon(trevas);
         }
-        
+
         if (combo_atributo.getSelectedItem().equals("Divino")) {
             lbl_atributo.setIcon(god);
         }
-        
+
         if (combo_atributo.getSelectedItem().equals("Terra")) {
             lbl_atributo.setIcon(terra);
         }
-        
+
         if (combo_atributo.getSelectedItem().equals("Fogo")) {
             lbl_atributo.setIcon(fogo);
         }
-        
+
         if (combo_atributo.getSelectedItem().equals("Luz")) {
             lbl_atributo.setIcon(luz);
         }
-        
+
         if (combo_atributo.getSelectedItem().equals("Água")) {
             lbl_atributo.setIcon(agua);
         }
-        
+
         if (combo_atributo.getSelectedItem().equals("Vento")) {
             lbl_atributo.setIcon(vento);
         }
     }
-    
+
     private void setarNivel() {
         ImageIcon nv1 = new ImageIcon("src\\br\\inatel\\yugioh\\img\\nv\\nivel1.png");
         ImageIcon nv2 = new ImageIcon("src\\br\\inatel\\yugioh\\img\\nv\\nivel2.png");
@@ -632,56 +614,56 @@ public class CadastroMonstro extends javax.swing.JFrame {
         ImageIcon nv10 = new ImageIcon("src\\br\\inatel\\yugioh\\img\\nv\\nivel10.png");
         ImageIcon nv11 = new ImageIcon("src\\br\\inatel\\yugioh\\img\\nv\\nivel11.png");
         ImageIcon nv12 = new ImageIcon("src\\br\\inatel\\yugioh\\img\\nv\\nivel12.png");
-        
+
         if (combo_nivel.getSelectedItem().equals("1")) {
             lbl_nivel.setIcon(nv1);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("2")) {
             lbl_nivel.setIcon(nv2);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("3")) {
             lbl_nivel.setIcon(nv3);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("4")) {
             lbl_nivel.setIcon(nv4);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("5")) {
             lbl_nivel.setIcon(nv5);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("6")) {
             lbl_nivel.setIcon(nv6);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("7")) {
             lbl_nivel.setIcon(nv7);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("8")) {
             lbl_nivel.setIcon(nv8);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("9")) {
             lbl_nivel.setIcon(nv9);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("10")) {
             lbl_nivel.setIcon(nv10);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("11")) {
             lbl_nivel.setIcon(nv11);
         }
-        
+
         if (combo_nivel.getSelectedItem().equals("12")) {
             lbl_nivel.setIcon(nv12);
         }
     }
-    
+
     private void setarTipoCarta() {
         // Referenciando as imagens
         ImageIcon monster = new ImageIcon("src\\br\\inatel\\yugioh\\img\\card\\monsterPNG.png");
@@ -703,7 +685,7 @@ public class CadastroMonstro extends javax.swing.JFrame {
             lbl_Carta.setIcon(fusion);
         }
     }
-    
+
     private void preencherDados() {
         // Setando o tipo da carta (Desenho)
         lbl_type.setText("[" + txt_tipo.getText() + " / " + combo_tipo.getSelectedItem() + "]");
