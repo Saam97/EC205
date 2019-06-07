@@ -1,4 +1,4 @@
-package br.inatel.yugioh.model;
+package br.inatel.yugioh.control;
 
 import br.inatel.yugioh.view.Login;
 

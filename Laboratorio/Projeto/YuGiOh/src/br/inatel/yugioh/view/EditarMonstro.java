@@ -73,6 +73,7 @@ public class EditarMonstro extends javax.swing.JFrame {
         lbl_fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_id.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);

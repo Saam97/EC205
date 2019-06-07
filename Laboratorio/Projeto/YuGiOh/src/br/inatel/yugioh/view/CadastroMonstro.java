@@ -517,7 +517,7 @@ public class CadastroMonstro extends javax.swing.JFrame {
 
             d.salvarDeck(baralho);
 
-            JOptionPane.showMessageDialog(rootPane, "Monstro Cadastrado com Sucesso!");
+            JOptionPane.showMessageDialog(jPanel2, "Monstro Cadastrado com Sucesso!");
 
             // Sai da tela e volta pro menu
             Menu menu = new Menu();

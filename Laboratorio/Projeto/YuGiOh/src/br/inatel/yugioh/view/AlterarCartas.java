@@ -250,38 +250,6 @@ public class AlterarCartas extends javax.swing.JFrame {
         jList1.setModel(model);
     }
 
-    private void preencherDados() {
-
-    }
-
-    /*
-    private void refleshTabela() {
-        this.dtm.getDataVector().removeAllElements();
-        pro = (arquivoPro.ler());
-        if (pro.size() > 0) {
-            for (Produtos produtos : pro) {
-
-                dtm.insertRow(dtm.getRowCount(), new Object[]{
-                    produtos.getTipo(),
-                    produtos.getMarca(),
-                    produtos.getTamanho(),
-                    produtos.getCor(),
-                    produtos.getDescricao()
-                });
-            }
-        }
-        else{
-            dtm.insertRow(dtm.getRowCount(), new Object[]{
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                });
-            
-        }
-    }
-     */
     private void mostrarCarta() {
         String nomeMonstro = jList1.getSelectedValue();
 
@@ -302,11 +270,11 @@ public class AlterarCartas extends javax.swing.JFrame {
                     // Confirmação
                     String msg = "Deseja remover a carta " + carta.getNome() + "?";
 
-                    int op = JOptionPane.showConfirmDialog(rootPane, msg, "Excluir", JOptionPane.WARNING_MESSAGE);
+                    int op = JOptionPane.showConfirmDialog(jScrollPane1, msg, "Excluir", JOptionPane.WARNING_MESSAGE);
 
                     if (op == 0) {
                         // OK: excluir o monstro
-                        JOptionPane.showMessageDialog(rootPane, "Carta Removida com Sucesso!");
+                        JOptionPane.showMessageDialog(jScrollPane1, "Carta Removida com Sucesso!");
                         this.dck.remove(indiceSelecionado);
                         d.salvarDeck(dck);
                         this.listarCartas();
@@ -328,14 +296,14 @@ public class AlterarCartas extends javax.swing.JFrame {
             for (Carta carta : dck) {
                 if (carta.getNome().equals(nomeMonstro)) {
                     indiceSelecionado = dck.indexOf(carta);
-                    
+
                     // Confirmação
                     String msg = "Deseja editar a carta " + carta.getNome() + "?";
-                    int op = JOptionPane.showConfirmDialog(rootPane, msg, "Editar", JOptionPane.WARNING_MESSAGE);
+                    int op = JOptionPane.showConfirmDialog(jScrollPane1, msg, "Editar", JOptionPane.WARNING_MESSAGE);
 
                     if (op == 0) {
                         // OK: editar
-                        int opcao = JOptionPane.showConfirmDialog(rootPane, "Você deseja mudar o tipo da carta para Monstro?",
+                        int opcao = JOptionPane.showConfirmDialog(jScrollPane1, "Alterar tipo para Monstro?",
                                 "Edição", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                         if (opcao == 0) {
