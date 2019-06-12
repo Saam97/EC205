@@ -5,6 +5,7 @@
  */
 package br.inatel.yugioh.view;
 
+import br.inatel.yugioh.control.Deck;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);           // Centralizar a Tela
+        lbl_user.setText( Deck.nomeUsuario );
     }
 
     /**
@@ -31,12 +33,14 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_cadastro = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
         btn_mostrar = new javax.swing.JButton();
         btn_logout = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        lbl_user = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lbl_Fundo = new javax.swing.JLabel();
 
@@ -46,6 +50,10 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(660, 360));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setText("Usuário:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel2.setOpaque(false);
 
@@ -107,6 +115,9 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 660, -1));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_user.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jPanel1.add(lbl_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 590, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/yugioh/img/Logo Yu-Gi-Oh! 03.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 310));
@@ -181,10 +192,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btn_logout;
     private javax.swing.JButton btn_mostrar;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_Fundo;
+    private javax.swing.JLabel lbl_user;
     // End of variables declaration//GEN-END:variables
 
     /**

@@ -191,19 +191,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void entrar() {
-        boolean user = this.txt_usuario.getText().equals("admin");    // Comparação do usuario
-        boolean password = this.txt_senha.getText().equals("admin");  // Comparação da senha
-
-        // Se o usuario e senha for igual a "admin"
-        if (user && password) {
-            // Libera o acesso ao Menu
-            Menu telaPrincipal = new Menu();    // Cria o menu
-            telaPrincipal.setVisible(true);     // Chama a tela de menu
-            this.dispose();
-        } else {
-            lerDados();
-        }
-
+        lerDados();
     }
 
     private void novoUsuario() {
