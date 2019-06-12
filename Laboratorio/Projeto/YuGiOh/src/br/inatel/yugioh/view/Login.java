@@ -1,8 +1,17 @@
 package br.inatel.yugioh.view;
 
+import br.inatel.yugioh.control.Deck;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
+
+    private String[] linha = new String[1000];
 
     /**
      * Creates new form Login
@@ -29,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         txt_senha = new javax.swing.JPasswordField();
         txt_usuario = new javax.swing.JTextField();
         btn_entrar = new javax.swing.JButton();
-        btn_limparCampos = new javax.swing.JButton();
+        btn_novoUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciador de Baralho - Login");
@@ -63,11 +72,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btn_limparCampos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_limparCampos.setText("Limpar Campos");
-        btn_limparCampos.addActionListener(new java.awt.event.ActionListener() {
+        btn_novoUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_novoUser.setText("Novo Usuario");
+        btn_novoUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_limparCamposActionPerformed(evt);
+                btn_novoUserActionPerformed(evt);
             }
         });
 
@@ -84,19 +93,19 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_senha, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                            .addComponent(txt_senha)
                             .addComponent(txt_usuario)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_limparCampos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_novoUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(btn_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_usuario))
@@ -104,22 +113,22 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_senha)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_limparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_novoUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 67, 380, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 67, 380, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_limparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limparCamposActionPerformed
-        // Botão Limpar Campos
-        limparCampos();
-    }//GEN-LAST:event_btn_limparCamposActionPerformed
+    private void btn_novoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoUserActionPerformed
+        // Botão Novo usuario
+        novoUsuario();
+    }//GEN-LAST:event_btn_novoUserActionPerformed
 
     private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
         // TODO add your handling code here:
@@ -167,7 +176,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_entrar;
-    private javax.swing.JButton btn_limparCampos;
+    private javax.swing.JButton btn_novoUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -175,33 +184,100 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_senha;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
-    
-    private void limparCampos(){
+
+    private void limparCampos() {
         this.txt_usuario.setText("");
         this.txt_senha.setText("");
     }
-    
-    private void entrar(){
+
+    private void entrar() {
         boolean user = this.txt_usuario.getText().equals("admin");    // Comparação do usuario
         boolean password = this.txt_senha.getText().equals("admin");  // Comparação da senha
-        
+
         // Se o usuario e senha for igual a "admin"
-        if ( user && password ) {
+        if (user && password) {
             // Libera o acesso ao Menu
             Menu telaPrincipal = new Menu();    // Cria o menu
             telaPrincipal.setVisible(true);     // Chama a tela de menu
-            this.setVisible(false);             // Tira a tela de login
+            this.dispose();
         } else {
+            lerDados();
+        }
+
+    }
+
+    private void novoUsuario() {
+        Cadastro c = new Cadastro();
+        c.setVisible(true);
+        this.dispose();
+    }
+
+    private void lerDados() {
+        InputStream fluxoEntrada;               // Fluxo de entrada
+        InputStreamReader leitorFluxoEntrada;   // Leitor do fluxo de entrada
+        BufferedReader bufferEntrada = null;    // Buffer da entrada
+        int i = 0;
+
+        try {
+            fluxoEntrada = new FileInputStream("usuarios.txt");
+            leitorFluxoEntrada = new InputStreamReader(fluxoEntrada);
+            bufferEntrada = new BufferedReader(leitorFluxoEntrada);
+            linha[0] = bufferEntrada.readLine();
+            i++;
+            while (i != 1000) {
+                linha[i] = bufferEntrada.readLine();
+                i++;
+            }
+
+            // Tratamento de Erros
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Nenhum usuário cadastrado !", "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Nenhum usuário cadastrado !", "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            // Sempre fechar o arquivo após ler/gravar !!
+            try {
+                bufferEntrada.close();      // Fecha o arquivo
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao consultar arquivo !", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        verificacao();
+
+    }
+
+    private void verificacao() {
+        String user = txt_usuario.getText();
+        String pass = txt_senha.getText();
+        boolean flag = false;
+
+        for (int j = 0; j < 1000; j++) {
+
+            if (linha[j + 1] == null) {
+                break;
+            }
+            if (user.equals(linha[j]) && pass.equals(linha[j + 1])) {
+                // Aprovado
+                Deck.nomeUsuario = user;
+                Menu telaPrincipal = new Menu();    // Cria o menu
+                telaPrincipal.setVisible(true);     // Chama a tela de menu
+                this.dispose();
+                flag = true;
+            } 
+        }
+        if (!flag) {
             // Caso esteja errado emite um Erro
             String msg = "Usuario e/ou senha inválidos!";
             String title = "Erro ao efetuar login!";
             int msgType = JOptionPane.ERROR_MESSAGE;
             
             JOptionPane.showMessageDialog(rootPane, msg, title, msgType);
-            
+
             // Limpa os campos de texto
             limparCampos();
         }
+        
     }
 
 }

@@ -6,19 +6,19 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Deck {
     
     private ArrayList<Carta> baralho;
+    public static String nomeUsuario;
 
     // Construtor
     public Deck() {
         baralho = new ArrayList<>();
         
         try {
-            FileOutputStream dck = new FileOutputStream("Deck.txt", true);
+            FileOutputStream dck = new FileOutputStream( nomeUsuario + "Deck.txt", true);
             dck.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.toString(), "Erro ao Criar o Arquivo", JOptionPane.ERROR_MESSAGE);
@@ -41,7 +41,7 @@ public class Deck {
         ObjectOutputStream out;
         
         try {
-            fout = new FileOutputStream("Deck.txt", false);
+            fout = new FileOutputStream(nomeUsuario +"Deck.txt", false);
             out = new ObjectOutputStream(fout);
 
             out.writeObject(deck);
@@ -59,7 +59,7 @@ public class Deck {
         ArrayList<Carta> c = new ArrayList<>();
 
         try {
-            fin = new FileInputStream("Deck.txt");
+            fin = new FileInputStream(nomeUsuario +"Deck.txt");
             in = new ObjectInputStream(fin);
 
             c = (ArrayList<Carta>) in.readObject();
